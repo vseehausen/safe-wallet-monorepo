@@ -5,7 +5,7 @@ import { useHasFeature } from '@/hooks/useChains'
 import { FEATURES } from '@safe-global/utils/utils/chains'
 
 /**
- * Initializes Mixpanel analytics for the web app.
+ * Initializes Mixpanel analytics for the web app and analytics.
  * Should be called once at app startup.
  */
 const useMixpanel = () => {
@@ -14,10 +14,10 @@ const useMixpanel = () => {
   useEffect(() => {
     // Only initialize in the browser
     if (typeof window === 'undefined') return
-    
+
     // Check if Mixpanel feature is enabled
     if (!isMixpanelEnabled) return
-    
+
     const token = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN
     if (!token) return
     mixpanel.init(token, { debug: !IS_PRODUCTION })
